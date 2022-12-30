@@ -1,0 +1,25 @@
+@startuml
+scale 600 width
+[*] --> Installation
+
+state Installation {
+  [*] --> GatherImages
+  GatherImages --> SecureCopyFiles
+  SecureCopyFiles --> Ubuntu : Move project files to host machine
+}
+
+state Ubuntu {
+
+  state "Program Running <i>(run.sh)</i>" as RUN
+  RUN : (1) Pulls Required Images\n(2) Builds <b>nvidia-docker</b> image\n(3) Mounts Volumes\n(4) Triggers Continuous Process In Background\n(5) Cleans Image/Containers
+  [*] --> RUN
+  RUN <-- Dockerfile
+  state "Process" as P
+  P : Preprocess, Train,\nGenerate novel views,\nGenerate Videos, etc.,
+  RUN <-- P : Unlimited calls to\nlong running container.
+  P --> P
+  state "Volume" as V
+  V : For this project, the <b>scenes</b> and\n<b>checkpoints</b> directory are mounted.
+  RUN --> V : Mounted volume contains\nfinal artifacts
+}
+@enduml

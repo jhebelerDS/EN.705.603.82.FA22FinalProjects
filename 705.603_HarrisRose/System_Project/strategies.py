@@ -1,0 +1,11 @@
+import pandas as pd
+
+STRATEGY_MAP = {'S': 'S', 'H': 'H', 'Dh': 'H', 'Ds': 'S', 'Uh': 'H', 'Us': 'S'}
+ALL_STRATEGIES = pd.read_csv('All_Strategies.csv', header=0, index_col=0)
+BASIC_STRATEGY = ALL_STRATEGIES.drop(['S12', 'H4'])
+BASIC_STRATEGY_NO_SPLIT = ALL_STRATEGIES[10:]
+BASIC_STRATEGY_HIT_STAND_ONLY = BASIC_STRATEGY_NO_SPLIT.applymap(lambda s: STRATEGY_MAP[s])
+ALL_HIT_STRATEGY = BASIC_STRATEGY_HIT_STAND_ONLY.copy()
+ALL_HIT_STRATEGY.loc[:, :] = 'H'
+ALL_STAND_STRATEGY = BASIC_STRATEGY_HIT_STAND_ONLY.copy()
+ALL_STAND_STRATEGY.loc[:, :] = 'S'

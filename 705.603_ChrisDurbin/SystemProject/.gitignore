@@ -1,0 +1,7 @@
+.ipynb_checkpoints/
+wandb/*.log
+__pycache__/
+.DS_Store
+runs/
+videos/
+wandb/

@@ -1,0 +1,23 @@
+@startuml
+
+skinparam activity {
+    FontColor          white
+    AttributeFontColor white
+    FontSize           17
+    AttributeFontSize  15
+    AttributeFontname  Droid Sans Mono
+    BackgroundColor    #527BC6
+    BorderColor        black
+    ArrowColor         #222266
+}
+
+partition novel-view-synthesis {
+(*) --> "Upload Training Images"
+-> "Generate Camera Poses"
+-> "Generate MPIs"
+-> "Render Novel Views"
+-> "Render Video"
+-> "Store Results to Device"
+}
+
+@enduml

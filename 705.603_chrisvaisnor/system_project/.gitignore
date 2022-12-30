@@ -1,0 +1,14 @@
+# ignoring data files for now
+/inputs
+!inputs/train_set.txt
+!inputs/test_set.txt
+
+# ignoring output files
+/models
+!models/model_red_default.ckpt
+!models/src_lang.pickle
+!models/trg_lang.pickle
+
+/lightning_logs
+
+/wandb
